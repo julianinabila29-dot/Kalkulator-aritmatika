@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kalkulator Aritmatika</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-4" style="max-width:480px">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white text-center py-4">
+      <h1 class="h2 fw-bold mb-2">Kalkulator Aritmatika</h1>
+      <p class="mb-0">Nabila Nasa Juliani - NIM. 262302003</p>
+    </div>
+    <div class="card-body p-4">
+      <label class="form-label fs-5">Angka Pertama</label>
+      <input type="number" id="a" class="form-control form-control-lg mb-3" placeholder="Masukkan angka pertama">
+      <label class="form-label fs-5">Angka Kedua</label>
+      <input type="number" id="b" class="form-control form-control-lg mb-3" placeholder="Masukkan angka kedua">
+      <label class="form-label fs-5">Pilih Operator</label>
+      <select id="op" class="form-select form-select-lg mb-4">
+        <option value="+">Tambah (+)</option>
+        <option value="-">Kurang (-)</option>
+        <option value="*">Kali (*)</option>
+        <option value="/">Bagi (/)</option>
+        <option value="%">Modulus (%)</option>
+        <option value="**" selected>Pangkat (**)</option>
+      </select>
+      <button onclick="hitung()" class="btn btn-primary btn-lg w-100 mb-2">Hitung</button>
+      <button onclick="reset()" class="btn btn-secondary w-100">Reset</button>
+      <div class="bg-dark text-white text-center rounded-3 p-4 mt-4">
+        <h2 class="h5 text-uppercase">Hasil Perhitungan</h2>
+        <p id="hasil" class="text-info fw-bold mb-0">Menunggu Perhitungan</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function hitung(){
+  const a=parseFloat(document.getElementById('a').value);
+  const b=parseFloat(document.getElementById('b').value);
+  const op=document.getElementById('op').value;
+  const h=document.getElementById('hasil');
+  if(isNaN(a)||isNaN(b)){h.className='text-warning fw-bold mb-0';h.textContent='Isi kedua angka dulu';return;}
+  if(op==='/'&&b===0){h.className='text-danger fw-bold mb-0';h.textContent='Tidak bisa dibagi nol';return;}
+  const r={'+':a+b,'-':a-b,'*':a*b,'/':a/b,'%':a%b,'**':a**b}[op];
+  h.className='text-success fw-bold fs-3 mb-0';
+  h.textContent=a+' '+op+' '+b+' = '+r;
+}
+function reset(){
+  document.getElementById('a').value='';
+  document.getElementById('b').value='';
+  const h=document.getElementById('hasil');
+  h.className='text-info fw-bold mb-0';
+  h.textContent='Menunggu Perhitungan';
+}
+</script>
+</body>
+</html>
